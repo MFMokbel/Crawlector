@@ -78,7 +78,7 @@ Empty lines and lines that start with “;” or “//” are ignored.
 # Third-party libraries used
 
 - [Chilkat: library for website spidering, HTTP communications, and file compression (ZIP)](https://www.chilkatsoft.com/)
-- [Yara: for rule scanning](https://github.com/virustotal/yara)
+- [Yara: for rule scanning (v4.0.2)](https://github.com/virustotal/yara)
 - [CrossGuid: for generating GUID/UUID](https://github.com/graeme-hill/crossguid)
 - [Inih: for parsing configuration file](https://github.com/benhoyt/inih)
 - [Color Console: for console coloring](https://github.com/imfl/color-console)
