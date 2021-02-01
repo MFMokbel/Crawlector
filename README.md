@@ -38,7 +38,7 @@ b.	file name is unique per session.
 
 **Note**: It is very important that you familiarize yourself with the configuration file cl_config.ini prior to running any session. All of the sections and parameters are documented in the configuration file itself.
 
-**Sites Format Pattern**
+# Sites Format Pattern
 
 To visit/scan a website, the list of urls must be stored in text files, in the directory “cl_sites”. Crawlector accepts three types of urls:
 
@@ -71,14 +71,18 @@ depth, total and sleep, can also be replaced with their shortened versions d, t 
 **Note**: Type 3 url could be turned into type 1 url by setting the configuration parameter live_crawler to false, in the configuration file, in the spider section.
 Empty lines and lines that start with “;” or “//” are ignored.
 
-**Limitations**
+# Limitations
 -	Single threaded
 -	Static detection
 
-**Third-party libraries used**
+# Third-party libraries used
 
 - [Chilkat: library for website spidering, HTTP communications, and file compression (ZIP)](https://www.chilkatsoft.com/)
 - [Yara: for rule scanning](https://github.com/virustotal/yara)
 - [CrossGuid: for generating GUID/UUID](https://github.com/graeme-hill/crossguid)
 - [Inih: for parsing configuration file](https://github.com/benhoyt/inih)
 - [Color Console: for console coloring](https://github.com/imfl/color-console)
+
+# Contributing
+
+Open for pull requests and issues. Comments and suggestions are greatly appreciated.
