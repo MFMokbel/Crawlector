@@ -13,15 +13,15 @@ Crawlector (the name Crawlector is a combination of **Crawl**er & Det**ector**) 
 
 # Files and Folders Structures
 1. \cl_sites
-- this is where the list of sites to be visited or crawled is stored.
-- supports multiple files and directories.
+  - this is where the list of sites to be visited or crawled is stored.
+  - supports multiple files and directories.
 2. \crawled
 - where all crawled/spidered urls are saved to a text file.
 3. \results
 - where visited websites are saved.
 4. \pg_cache
 - program cache for sites that are not part of the spider functionality.
-5.\cl_cache
+5. \cl_cache
 - crawler cache for sites that are part of the spider functionality.
 6. \yara_rules
 - this is where all Yara rules are stored. All rules that exist in this directory will be loaded by the engine, parsed, validated, and evaluated prior to execution.
