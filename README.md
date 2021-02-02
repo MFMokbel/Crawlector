@@ -69,6 +69,7 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
  - The **sleep** parameter takes an integer value representing the number of milliseconds to sleep between every HTTP request.
  
 **Note 1**: Type 3 url could be turned into type 1 url by setting the configuration parameter live_crawler to false, in the configuration file, in the spider section.
+
 **Note 2**: Empty lines and lines that start with “;” or “//” are ignored.
 
 # Limitations
