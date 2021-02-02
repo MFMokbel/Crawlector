@@ -13,8 +13,8 @@ Crawlector (the name Crawlector is a combination of **Crawl**er & Det**ector**) 
 
 # Files and Folders Structures
 1. \cl_sites
-  - this is where the list of sites to be visited or crawled is stored.
-  - supports multiple files and directories.
+- this is where the list of sites to be visited or crawled is stored.
+- supports multiple files and directories.
 2. \crawled
 - where all crawled/spidered urls are saved to a text file.
 3. \results
@@ -34,7 +34,7 @@ Crawlector (the name Crawlector is a combination of **Crawl**er & Det**ector**) 
 9. cl_offl_mlog_<*current_date*>_<*current_time*>_<(pm|am)>.csv
 - log file that contains information about files scanned offline.
 - list of fired Yara rules with the offsets and lengths of the matches, and path to saved page on disk.
-b.	file name is unique per session.
+- file name is unique per session.
 
 **Note**: It is very important that you familiarize yourself with the configuration file cl_config.ini prior to running any session. All of the sections and parameters are documented in the configuration file itself.
 
@@ -59,17 +59,17 @@ which is equivalent to:
 
 where, `<id> := [a-zA-Z0-9_-]{1,128}`
 
-depth, total and sleep, can also be replaced with their shortened versions d, t and s, respectively.
+**depth**, **total** and **sleep**, can also be replaced with their shortened versions **d**, **t** and **s**, respectively.
 
-- depth; the spider supports going two-levels deep for finding additional urls (this is a design decision).
+- **depth**: the spider supports going two-levels deep for finding additional urls (this is a design decision).
  - A value of 0, indicates a depth of level 1, with the value that comes after the “->” ignored. 
  - A depth of level-1 is controlled by the total parameter. So, first, the spider tries to find that many number of additional urls off of the specified url.
- - The value after the “->” represents the maximum number of urls to spider for each of the urls found (as per the total parameter value).
- - A value of 1, indicates a depth of level 2, with the value that comes after the “->” representing the maximum number of urls to find, for every url found (depth-0) per the total parameter. For clarification, and as shown in the example above, first, the spider will look for 10 urls (as specified in the total parameter), and then, each of those found urls will be spidered up to a max of 3 urls; therefore, and in the best-case scenario, we would end up with 40 (10 + (10*3)) urls.
- - The sleep parameter takes an integer value representing the number of milliseconds to sleep between every HTTP request.
+ - The value after the “->” represents the maximum number of urls to spider for each of the urls found (as per the **total** parameter value).
+ - A value of 1, indicates a depth of level 2, with the value that comes after the “->” representing the maximum number of urls to find, for every url found (depth-0) per the **total** parameter. For clarification, and as shown in the example above, first, the spider will look for 10 urls (as specified in the **total** parameter), and then, each of those found urls will be spidered up to a max of 3 urls; therefore, and in the best-case scenario, we would end up with `40 (10 + (10*3))` urls.
+ - The **sleep** parameter takes an integer value representing the number of milliseconds to sleep between every HTTP request.
  
-**Note**: Type 3 url could be turned into type 1 url by setting the configuration parameter live_crawler to false, in the configuration file, in the spider section.
-Empty lines and lines that start with “;” or “//” are ignored.
+**Note 1**: Type 3 url could be turned into type 1 url by setting the configuration parameter live_crawler to false, in the configuration file, in the spider section.
+**Note 2**: Empty lines and lines that start with “;” or “//” are ignored.
 
 # Limitations
 -	Single threaded
