@@ -17,7 +17,7 @@ Crawlector (the name Crawlector is a combination of **Crawl**er & Det**ector**) 
 
 # Files and Folders Structures
 1. \cl_sites
-  + - this is where the list of sites to be visited or crawled is stored.
+  + this is where the list of sites to be visited or crawled is stored.
 >- supports multiple files and directories.
 2. \crawled
 >- where all crawled/spidered urls are saved to a text file.
