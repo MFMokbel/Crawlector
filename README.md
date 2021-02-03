@@ -20,25 +20,25 @@ Crawlector (the name Crawlector is a combination of **Crawl**er & Det**ector**) 
 >- this is where the list of sites to be visited or crawled is stored.
 >- supports multiple files and directories.
 2. \crawled
-- where all crawled/spidered urls are saved to a text file.
+>- where all crawled/spidered urls are saved to a text file.
 3. \results
-- where visited websites are saved.
+>- where visited websites are saved.
 4. \pg_cache
-- program cache for sites that are not part of the spider functionality.
+>- program cache for sites that are not part of the spider functionality.
 5. \cl_cache
-- crawler cache for sites that are part of the spider functionality.
+>- crawler cache for sites that are part of the spider functionality.
 6. \yara_rules
-- this is where all Yara rules are stored. All rules that exist in this directory will be loaded by the engine, parsed, validated, and evaluated prior to execution.
+>- this is where all Yara rules are stored. All rules that exist in this directory will be loaded by the engine, parsed, validated, and evaluated prior to execution.
 7. cl_config.ini
-- this file contains all the configuration parameters that can be adjusted to influence the behavior of the framework.
+>- this file contains all the configuration parameters that can be adjusted to influence the behavior of the framework.
 8. cl_mlog_<*current_date*>_<*current_time*>_<(pm|am)>.csv
-- log file that contains plethora of information about visited websites
-- date, time, list of fired Yara rules with the offsets and lengths of each of the matches, id, url, status code, connection status, HTTP headers, page size, and path to saved page on disk.
-- file name is unique per session.
+>- log file that contains plethora of information about visited websites
+>- date, time, list of fired Yara rules with the offsets and lengths of each of the matches, id, url, status code, connection status, HTTP headers, page size, and path to saved page on disk.
+>- file name is unique per session.
 9. cl_offl_mlog_<*current_date*>_<*current_time*>_<(pm|am)>.csv
-- log file that contains information about files scanned offline.
-- list of fired Yara rules with the offsets and lengths of the matches, and path to saved page on disk.
-- file name is unique per session.
+>- log file that contains information about files scanned offline.
+>- list of fired Yara rules with the offsets and lengths of the matches, and path to saved page on disk.
+>- file name is unique per session.
 
 **Note**: It is very important that you familiarize yourself with the configuration file cl_config.ini prior to running any session. All of the sections and parameters are documented in the configuration file itself.
 
@@ -47,19 +47,19 @@ Crawlector (the name Crawlector is a combination of **Crawl**er & Det**ector**) 
 To visit/scan a website, the list of urls must be stored in text files, in the directory “cl_sites”. Crawlector accepts three types of urls:
 
 1. Type 1: one url per line
-- Crawlector will assign a unique name to every url, derived from the url host name
+>- Crawlector will assign a unique name to every url, derived from the url host name
 2. Type 2: one url per line, with a unique name
-- `[a-zA-Z0-9_-]{1,128} = <url>`
+>- `[a-zA-Z0-9_-]{1,128} = <url>`
 3. Type 3: for the spider functionality, a unique format is used. One url per line as follows:
 
-- `<id>[`**depth**`:<0|1>-><\d+>,`**total**`:<\d+>,`**sleep**`:<\d+>] = <url>`
+>>>- `<id>[`**depth**`:<0|1>-><\d+>,`**total**`:<\d+>,`**sleep**`:<\d+>] = <url>`
 
 For example,
 
-`mfmokbel[depth:1->3,total:10,sleep:0] = https://www.mfmokbel.com`
+>>> `mfmokbel[depth:1->3,total:10,sleep:0] = https://www.mfmokbel.com`
 
 which is equivalent to:
-`mfmokbel[d:1->3,t:10,s:0] = https://www.mfmokbel.com`
+>>> `mfmokbel[d:1->3,t:10,s:0] = https://www.mfmokbel.com`
 
 where, `<id> := [a-zA-Z0-9_-]{1,128}`
 
