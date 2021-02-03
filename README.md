@@ -91,3 +91,7 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
 # Contributing
 
 Open for pull requests and issues. Comments and suggestions are greatly appreciated.
+
+# Author
+
+Mohamad Mokbel ([@MFMokbel](https://twitter.com/MFMokbel))
