@@ -49,17 +49,17 @@ To visit/scan a website, the list of urls must be stored in text files, in the d
 1. Type 1: one url per line
     + Crawlector will assign a unique name to every url, derived from the url host name
 2. Type 2: one url per line, with a unique name
-> `[a-zA-Z0-9_-]{1,128} = <url>`
+ `[a-zA-Z0-9_-]{1,128} = <url>`
 3. Type 3: for the spider functionality, a unique format is used. One url per line as follows:
 
->>> `<id>[`**depth**`:<0|1>-><\d+>,`**total**`:<\d+>,`**sleep**`:<\d+>] = <url>`
+ `<id>[`**depth**`:<0|1>-><\d+>,`**total**`:<\d+>,`**sleep**`:<\d+>] = <url>`
 
 For example,
 
->>> `mfmokbel[depth:1->3,total:10,sleep:0] = https://www.mfmokbel.com`
+ `mfmokbel[depth:1->3,total:10,sleep:0] = https://www.mfmokbel.com`
 
 which is equivalent to:
->>> `mfmokbel[d:1->3,t:10,s:0] = https://www.mfmokbel.com`
+ `mfmokbel[d:1->3,t:10,s:0] = https://www.mfmokbel.com`
 
 where, `<id> := [a-zA-Z0-9_-]{1,128}`
 
