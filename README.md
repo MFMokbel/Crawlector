@@ -3,7 +3,7 @@
 </p>
 
 # Crawlector
-Crawlector (the name Crawlector is a combination of **Crawl**er & Det**ector**) is a threat hunting framework designed for scanning websites for malicious objects.
+Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector**) is a threat hunting framework designed for scanning websites for malicious objects.
 
 # Features
 - Supports spidering websites for findings additional links for scanning (up to 2 levels only)
