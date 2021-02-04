@@ -2,7 +2,7 @@
   <img  src="./logo/crawlector_logo.svg">
 </p>
 
-# Crawlector
+# Crawl*e*ctor
 Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector**) is a threat hunting framework designed for scanning websites for malicious objects.
 
 # Features
