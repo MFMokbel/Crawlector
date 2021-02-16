@@ -9,6 +9,7 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 - Supports spidering websites for findings additional links for scanning (up to 2 levels only)
 - Integrates Yara as a backend engine for rule scanning
 - Supports online and offline scanning
+- Supports crawling for domains/sites digital certificate
 - Saves scanned websites pages for later scanning (can be saved as zip compressed)
 - The entirety of the framework’s settings is controlled via a single customizable configuration file
 - All scanning sessions are saved into a well-structured csv file with plethora of information about the website being scanned, in addition to information about the Yara rules that have triggered
@@ -21,24 +22,28 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
     + supports multiple files and directories.
 2. \crawled
     + where all crawled/spidered urls are saved to a text file.
-3. \results
+3. \certs
+    + where all domains/sites digital certificates are stored (in .der format).
+4. \results
     + where visited websites are saved.
-4. \pg_cache
+5. \pg_cache
     + program cache for sites that are not part of the spider functionality.
-5. \cl_cache
+6. \cl_cache
     + crawler cache for sites that are part of the spider functionality.
-6. \yara_rules
+7. \yara_rules
     + this is where all Yara rules are stored. All rules that exist in this directory will be loaded by the engine, parsed, validated, and evaluated prior to execution.
-7. cl_config.ini
+8. cl_config.ini
     + this file contains all the configuration parameters that can be adjusted to influence the behavior of the framework.
-8. cl_mlog_<*current_date*>_<*current_time*>_<(pm|am)>.csv
-    + log file that contains plethora of information about visited websites
+9. cl_mlog_<*current_date*>_<*current_time*>_<(pm|am)>.csv
+    + log file that contains a plethora of information about visited websites
     + date, time, list of fired Yara rules with the offsets and lengths of each of the matches, id, url, status code, connection status, HTTP headers, page size, and path to saved page on disk.
     + file name is unique per session.
-9. cl_offl_mlog_<*current_date*>_<*current_time*>_<(pm|am)>.csv
+10. cl_offl_mlog_<*current_date*>_<*current_time*>_<(pm|am)>.csv
     + log file that contains information about files scanned offline.
     + list of fired Yara rules with the offsets and lengths of the matches, and path to saved page on disk.
     + file name is unique per session.
+11. cl_certs_<*current_date*>_<*current_time*>_<(pm|am)>.csv
+    + log file that contains a plethora of information about found digital certificates
 
 **Note**: It is very important that you familiarize yourself with the configuration file cl_config.ini prior to running any session. All of the sections and parameters are documented in the configuration file itself.
 
