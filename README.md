@@ -10,11 +10,21 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 - Integrates Yara as a backend engine for rule scanning
 - Supports online and offline scanning
 - Supports crawling for domains/sites digital certificate
+- Supports querying [URLhaus](https://urlhaus.abuse.ch/) for finding malicious urls in the page
 - Saves scanned websites pages for later scanning (can be saved as zip compressed)
 - The entirety of the framework’s settings is controlled via a single customizable configuration file
 - All scanning sessions are saved into a well-structured csv file with plethora of information about the website being scanned, in addition to information about the Yara rules that have triggered
 - One executable
 - Written in C++
+
+# URLHaus Scanning & API Integration
+This is for checking for [malicious urls](https://urlhaus.abuse.ch/downloads/text/) against every page being scanned. The framework could either query the list of malicious urls from URLHaus [server](https://urlhaus.abuse.ch/downloads/text/) (*configuration*: url_list_web), or from a file on disk (*configuration*: url_list_file), and if the latter is specified, then, it takes precedence over the former.
+
+It works by searching the content of every page against all url entries in url_list_web or url_list_file, checking for all occurences. Additionally, upon a match, and if the configuration option check_url_api is set to true, Crawlector will send a POST request to the API url set in the url_api configuration option, which returns a Json object with extra information about a matching url. Such information include, urlh_status (ex., online, offline, unknown), urlh_threat (ex., malware_download), urlh_tags (ex., elf, Mozi), and urlh_reference (ex., https://urlhaus.abuse.ch/url/1116455/). This information will be included in the log file cl_mlog_<*current_date*>_<*current_time*>_<(pm|am)>.csv (check below), only if check_url_api is set to true. Otherwise, the log file will include the columns urlh_url (list of matching malicious urls) and urlh_hit (number of occurences for every matching malicious url), conditional on whether check_url is set to true.
+
+URLHaus feature could be disabled in its entirety by setting the configuration option check_url to false.
+
+It is important to note that this feature could slow scanning considering the huge number of [malicious urls](https://urlhaus.abuse.ch/downloads/text/) (~ 110 million entries at the time of this writing) that need to checked, and the time it takes to get extra information form the URLHaus server (if the option check_url_api is set to true).
 
 # Files and Folders Structures
 1. \cl_sites
@@ -36,7 +46,7 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
     + this file contains all the configuration parameters that can be adjusted to influence the behavior of the framework.
 9. cl_mlog_<*current_date*>_<*current_time*>_<(pm|am)>.csv
     + log file that contains a plethora of information about visited websites
-    + date, time, list of fired Yara rules with the offsets and lengths of each of the matches, id, url, status code, connection status, HTTP headers, page size, and path to saved page on disk.
+    + date, time, status of Yara scanning, list of fired Yara rules with the offsets and lengths of each of the matches, id, url, HTTP status code, connection status, HTTP headers, page size, path to saved page on disk, and other columns related to URLHaus results.
     + file name is unique per session.
 10. cl_offl_mlog_<*current_date*>_<*current_time*>_<(pm|am)>.csv
     + log file that contains information about files scanned offline.
@@ -45,7 +55,11 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 11. cl_certs_<*current_date*>_<*current_time*>_<(pm|am)>.csv
     + log file that contains a plethora of information about found digital certificates
 
-**Note**: It is very important that you familiarize yourself with the configuration file cl_config.ini prior to running any session. All of the sections and parameters are documented in the configuration file itself.
+# Configuration File (cl_config.ini)
+
+It is very important that you familiarize yourself with the configuration file cl_config.ini prior to running any session. All of the sections and parameters are documented in the configuration file itself.
+
+The Yara offline scanning feature is a standalone option, meaning, if enabled, Crawlector will execute this feature only irrespective of other enabled features. And, the same is true for the crawling for domains/sites digital certificate feature. Either way, it is recommended that you disable all non-used features in the configuration file.
 
 # Sites Format Pattern
 
@@ -87,7 +101,7 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
 
 # Third-party libraries used
 
-- [Chilkat: library for website spidering, HTTP communications, and file compression (ZIP)](https://www.chilkatsoft.com/)
+- [Chilkat: library for website spidering, HTTP communications, JSON parsing, and file compression (ZIP)](https://www.chilkatsoft.com/)
 - [Yara: for rule scanning (v4.0.2)](https://github.com/virustotal/yara)
 - [CrossGuid: for generating GUID/UUID](https://github.com/graeme-hill/crossguid)
 - [Inih: for parsing configuration file](https://github.com/benhoyt/inih)
