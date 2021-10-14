@@ -10,10 +10,10 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 - Integrates Yara as a backend engine for rule scanning
 - Supports online and offline scanning
 - Supports crawling for domains/sites digital certificate
-- Supports querying [URLhaus](https://urlhaus.abuse.ch/) for finding malicious urls in the page
-- Saves scanned websites pages for later scanning (can be saved as zip compressed)
+- Supports querying URLhaus for finding malicious URLs on the page
+- Saves scanned websites pages for later scanning (can be saved as a zip compressed)
 - The entirety of the framework’s settings is controlled via a single customizable configuration file
-- All scanning sessions are saved into a well-structured csv file with plethora of information about the website being scanned, in addition to information about the Yara rules that have triggered
+- All scanning sessions are saved into a well-structured CSV file with a plethora of information about the website being scanned, in addition to information about the Yara rules that have triggered
 - One executable
 - Written in C++
 
