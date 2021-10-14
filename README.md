@@ -63,7 +63,9 @@ The Yara offline scanning feature is a standalone option, meaning, if enabled, C
 
 # Sites Format Pattern
 
-To visit/scan a website, the list of URLs must be stored in text files, in the directory “cl_sites”. Crawlector accepts three types of URLs:
+To visit/scan a website, the list of URLs must be stored in text files, in the directory “cl_sites”. 
+
+Crawlector accepts three types of URLs:
 
 1. Type 1: one URL per line
     + Crawlector will assign a unique name to every URL, derived from the URL hostname
