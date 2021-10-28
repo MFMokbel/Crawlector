@@ -11,6 +11,7 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 - Supports online and offline scanning
 - Supports crawling for domains/sites digital certificate
 - Supports querying URLhaus for finding malicious URLs on the page
+- Supports querying the rating and category of every URL
 - Saves scanned websites pages for later scanning (can be saved as a zip compressed)
 - The entirety of the framework’s settings is controlled via a single customizable configuration file
 - All scanning sessions are saved into a well-structured CSV file with a plethora of information about the website being scanned, in addition to information about the Yara rules that have triggered
