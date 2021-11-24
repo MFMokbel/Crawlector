@@ -12,6 +12,7 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 - Supports crawling for domains/sites digital certificate
 - Supports querying URLhaus for finding malicious URLs on the page
 - Supports hashing the page's content with [TLSH (Trend Micro Locality Sensitive Hash)](https://github.com/trendmicro/tlsh), and other standard cryptographic hash functions such as md5, sha1, sha256, and ripemd128, among others
+  - TLSH won't return a value if the page size is less than 50 bytes or not "enough amount of randomness" is present in the data
 - Supports querying the rating and category of every URL
 - Supports expanding on a given site, by attempting to find all available TLDs and/or subdomains for the same domain
   - This feature along with the rating and categorization, provides the capability to find scam/phishing/malicious domains for the original domain
