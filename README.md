@@ -68,6 +68,9 @@ It is very important that you familiarize yourself with the configuration file c
 
 The Yara offline scanning feature is a standalone option, meaning, if enabled, Crawlector will execute this feature only irrespective of other enabled features. And, the same is true for the crawling for domains/sites digital certificate feature. Either way, it is recommended that you disable all non-used features in the configuration file.
 
+- Depending on the configuration settings (`log_to_file` or `log_to_cons`), a Yara rule references only a module's attributes (ex., PE, ELF, Hash, etc...), then Crawlector will display only the rule's name upon a match, absence of the offset and length.
+
+
 # Sites Format Pattern
 
 To visit/scan a website, the list of URLs must be stored in text files, in the directory “cl_sites”. 
