@@ -114,11 +114,11 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
 # Third-party libraries used
 
 - [Chilkat: library for website spidering, HTTP communications, hashing, JSON parsing and file compression (ZIP), among others](https://www.chilkatsoft.com/)
-- [Yara: for rule scanning (v4.1.1)](https://github.com/virustotal/yara)
+- [Yara: for rule scanning (v4.2.0)](https://github.com/virustotal/yara)
 - [CrossGuid: for generating GUID/UUID](https://github.com/graeme-hill/crossguid)
 - [Inih: for parsing configuration file](https://github.com/benhoyt/inih)
 - [Color Console: for console coloring](https://github.com/imfl/color-console)
-- [TLSH (Trend Micro Locality Sensitive Hash)](https://github.com/trendmicro/tlsh)
+- [TLSH (Trend Micro Locality Sensitive Hash) (v4.8.2)](https://github.com/trendmicro/tlsh)
 
 # Contributing
 
