@@ -68,7 +68,7 @@ It is very important that you familiarize yourself with the configuration file c
 
 The Yara offline scanning feature is a standalone option, meaning, if enabled, Crawlector will execute this feature only irrespective of other enabled features. And, the same is true for the crawling for domains/sites digital certificate feature. Either way, it is recommended that you disable all non-used features in the configuration file.
 
-- Depending on the configuration settings (`log_to_file` or `log_to_cons`), a Yara rule references only a module's attributes (ex., PE, ELF, Hash, etc...), then Crawlector will display only the rule's name upon a match, absence of the offset and length.
+- Depending on the configuration settings (`log_to_file` or `log_to_cons`), if a Yara rule references only a module's attributes (ex., PE, ELF, Hash, etc...), then Crawlector will display only the rule's name upon a match, excluding offset and length data.
 
 
 # Sites Format Pattern
@@ -100,7 +100,7 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
  - A value of 0 indicates a depth of level 1, with the value that comes after the “->” ignored. 
  - A depth of level-1 is controlled by the total parameter. So, first, the spider tries to find that many additional URLs off of the specified URL.
  - The value after the “->” represents the maximum number of URLs to spider for each of the URLs found (as per the **total** parameter value).
- - A value of 1, indicates a depth of level 2, with the value that comes after the “->” representing the maximum number of URLs to find, for every URL found (depth-0) per the **total** parameter. For clarification, and as shown in the example above, first, the spider will look for 10 URLs (as specified in the **total** parameter), and then, each of those found URLs will be spidered up to a max of 3 URLs; therefore, and in the best-case scenario, we would end up with `40 (10 + (10*3))` URLs.
+ - A value of 1, indicates a depth of level 2, with the value that comes after the “->” representing the maximum number of URLs to find, for every URL found per the **total** parameter. For clarification, and as shown in the example above, first, the spider will look for 10 URLs (as specified in the **total** parameter), and then, each of those found URLs will be spidered up to a max of 3 URLs; therefore, and in the best-case scenario, we would end up with `40 (10 + (10*3))` URLs.
  - The **sleep** parameter takes an integer value representing the number of milliseconds to sleep between every HTTP request.
  
 **Note 1**: Type 3 URL could be turned into type 1 URL by setting the configuration parameter live_crawler to false, in the configuration file, in the spider section.
@@ -109,7 +109,7 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
 
 # Limitations
 -	Single threaded
--	Static detection
+-	Static detection. No dynamic evaluation of a given page's content.
 
 # Third-party libraries used
 
