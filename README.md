@@ -110,6 +110,16 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
 
 **Note 2**: Empty lines and lines that start with “;” or “//” are ignored.
 
+# The Spider Functionality
+
+The spider functionality is what gives Crawlector the capability to find additional links on the targeted page. The Spider supports the following featuers:
+
+- You may specify a list of wildcarded patterns (pipe delimited) to prevent spidering matching urls via the exclude_url config. option
+- You may specify a list of wildcarded patterns (pipe delimited) to spider only urls that match the pattern via the include_url config. option
+- You may exclude HTTPS urls via the config. option exclude_https
+- You may account for outbound/external links as well, for the main page only, via the config. option add_ext_links. This feature honours the exclude_url and include_url config. option.
+- You may account for outbound/external links of the main page only, excluding all other urls, via the config. option ext_links_only. This feature honours the exclude_url and include_url config. option.
+
 # Design Considerations
 
 - A URL page is retrieved by sending a GET request to the server, reading the server response body, and passing it to Yara engine for detection.
@@ -119,7 +129,8 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
 # Limitations
 
 -	Single threaded
--	Static detection. No dynamic evaluation of a given page's content.
+-	Static detection (no dynamic evaluation of a given page's content)
+- No headless browser support, yet!
 
 # Third-party libraries used
 
