@@ -114,11 +114,12 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
 
 The spider functionality is what gives Crawlector the capability to find additional links on the targeted page. The Spider supports the following featuers:
 
-- You may specify a list of wildcarded patterns (pipe delimited) to prevent spidering matching urls via the exclude_url config. option
-- You may specify a list of wildcarded patterns (pipe delimited) to spider only urls that match the pattern via the include_url config. option
-- You may exclude HTTPS urls via the config. option exclude_https
-- You may account for outbound/external links as well, for the main page only, via the config. option add_ext_links. This feature honours the exclude_url and include_url config. option.
-- You may account for outbound/external links of the main page only, excluding all other urls, via the config. option ext_links_only. This feature honours the exclude_url and include_url config. option.
+- The domain has to be of `Type 3`, for the Spider functionality to work
+- You may specify a list of wildcarded patterns (pipe delimited) to prevent spidering matching urls via the `exclude_url` config. option. For example, `*.zip|*.exe|*.rar|*.zip|*.7z|*.pdf|.*bat|*.db`
+- You may specify a list of wildcarded patterns (pipe delimited) to spider only urls that match the pattern via the `include_url` config. option. For example, `*/checkout/*|*/products/*`
+- You may exclude HTTPS urls via the config. option `exclude_https`
+- You may account for outbound/external links as well, for the main page only, via the config. option `add_ext_links`. This feature honours the `exclude_url` and `include_url` config. option.
+- You may account for outbound/external links of the main page only, excluding all other urls, via the config. option `ext_links_only`. This feature honours the `exclude_url` and `include_url` config. option.
 
 # Design Considerations
 
