@@ -126,6 +126,7 @@ The spider functionality is what gives Crawlector the capability to find additio
 - A URL page is retrieved by sending a GET request to the server, reading the server response body, and passing it to Yara engine for detection.
 - Some of the GET request attributes are defined in the [default] section in the configuration file, including, the User-Agent and Referer headers, and connection timeout, among other options.
 - Although Crawlector logs a session's data to a CSV file, converting it to an SQL file is recommended for better performance, manipulation and retrieval of the data. This becomes evident when you’re crawling thousands of domains.
+- Repeated domains/urls in the cl_sites are allowed.
 
 # Limitations
 
