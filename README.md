@@ -35,7 +35,7 @@ It works by searching the content of every page against all URL entries in url_l
 
 URLHaus feature could be disabled in its entirety by setting the configuration option check_url to false.
 
-It is important to note that this feature could slow scanning considering the huge number of [malicious urls](https://urlhaus.abuse.ch/downloads/text/) (~ 110 million entries at the time of this writing) that need to be checked, and the time it takes to get extra information from the URLHaus server (if the option check_url_api is set to true).
+It is important to note that this feature could slow scanning considering the huge number of [malicious urls](https://urlhaus.abuse.ch/downloads/text/) (~ 130 million entries at the time of this writing) that need to be checked, and the time it takes to get extra information from the URLHaus server (if the option check_url_api is set to true).
 
 # Files and Folders Structures
 
