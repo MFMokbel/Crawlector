@@ -23,6 +23,7 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 - Saves scanned websites pages for later scanning (can be saved as a zip compressed)
 - The entirety of the framework’s settings is controlled via a single customizable configuration file
 - All scanning sessions are saved into a well-structured CSV file with a plethora of information about the website being scanned, in addition to information about the Yara rules that have triggered
+- All HTTP(S) communications are proxy-aware
 - One executable
 - Written in C++
 
