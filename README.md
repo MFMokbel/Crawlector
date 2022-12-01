@@ -156,6 +156,7 @@ The spider functionality is what gives Crawlector the capability to find additio
 - [Yara: for rule scanning (v4.2.3)](https://github.com/virustotal/yara)
 - [CrossGuid: for generating GUID/UUID](https://github.com/graeme-hill/crossguid)
 - [Inih: for parsing configuration file](https://github.com/benhoyt/inih)
+- [Rapidcsv: for parsing CSV files](https://github.com/d99kris/rapidcsv)
 - [Color Console: for console coloring](https://github.com/imfl/color-console)
 - [TLSH (Trend Micro Locality Sensitive Hash) (v4.8.2)](https://github.com/trendmicro/tlsh)
 
