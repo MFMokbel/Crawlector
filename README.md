@@ -122,6 +122,21 @@ The spider functionality is what gives Crawlector the capability to find additio
 - You may account for outbound/external links as well, for the main page only, via the config. option `add_ext_links`. This feature honours the `exclude_url` and `include_url` config. option.
 - You may account for outbound/external links of the main page only, excluding all other urls, via the config. option `ext_links_only`. This feature honours the `exclude_url` and `include_url` config. option.
 
+# Site Ranking Funcitonality
+
+- This is for checking the ranking of the website
+- You give it a file with a list of websites, with their ranking, in a csv file format
+- Services that provide lists of websites ranking include, Alexa top-1m (discontinued as of May 2022), [Cisco Umbrella](https://umbrella-static.s3-us-west-1.amazonaws.com/index.html), [Majestic](https://majestic.com/reports/majestic-million), Quantcast, Farsight and [Tranco](https://tranco-list.eu/), among others
+- CSV file format (2 columns only): first column holds the ranking, and the second column holds the domain name
+- If a cell to contain quoted data, it'll be automatically dequoted
+- Line breaks aren't allowed in quoted text
+- Leading and trailing spaces are trimmed from cells read
+- Empty and comment lines are skipped
+- The section `site_ranking` in the configuration file provides some options to alter how the CSV file is to be read
+- The performance of this query is dependent on the number of records in the CSV file
+- Crawlector compares every entry in the CSV file against the domain being investigated, and not the other way around
+- Only the registered/pay-level domain is compared
+
 # Design Considerations
 
 - A URL page is retrieved by sending a GET request to the server, reading the server response body, and passing it to Yara engine for detection.
