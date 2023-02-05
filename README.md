@@ -7,6 +7,7 @@
 Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector**) is a threat hunting framework designed for scanning websites for malicious objects.
 
 **Note-1**: The framework was first presented at the [No Hat](https://www.nohat.it/2022/talks) conference in Bergamo, Italy on October 22nd, 2022 ([Slides](https://www.nohat.it/2022/static/slides/crawlector.pdf), [YouTube Recording](https://youtu.be/-9bupVXHo5Y)). Also, it was presented for the second time at the [AVAR](https://aavar.org/cybersecurity-conference/index.php/crawlector-a-threat-hunting-framework/) conference, in Singapore, on December 2nd, 2022.
+
 **Note-2**: The accompanying tool [EKFiddle2Yara](https://github.com/MFMokbel/EKFiddle2Yara) (*is a tool that takes EKFiddle rules and converts them into Yara rules*) mentioned in the talk, was also released at both conferences.
 
 # Features
