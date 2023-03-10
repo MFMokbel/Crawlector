@@ -71,6 +71,10 @@ It is important to note that this feature could slow scanning considering the hu
     + file name is unique per session.
 11. cl_certs_<*current_date*>_<*current_time*>_<(pm|am)>.csv
     + log file that contains a plethora of information about found digital certificates
+12. \expanded\exp_subdomain_<date>_<time>_<pm|am>.txt
+    + contains discovered subdomains (part of the [site] section)
+13. \expanded\exp_tld_<date>_<time>_<pm|am>.txt
+    + contains discovered domains (part of the [site] section)
 
 # Configuration File (cl_config.ini)
 
