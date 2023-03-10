@@ -149,7 +149,7 @@ The spider functionality is what gives Crawlector the capability to find additio
 - Omnisint Labs API returns subdomains and tlds, whereas RapidAPI returns only subdomains (the Omnisint Labs API is down as of March 10, 2023, however, the implementation is still available in case the site is back up)
 - For RapidAPI, you need a valid "Domains records" API key that you can request from RapidAPI, and plug it into the key `rapid_api_key` in the configuration file
 - With `find_tlds` enabled, in addition to Omnisint Labs API tlds results, the framework attempts to find other active/registered domains by going through every tld entry, either, in the `tlds_file` or `tlds_url`
-- If tlds_url is set, it should point to a url that hosts tlds, each one on a new line (lines that start with either of the characters ';', '#' or '//' are ignored)
+- If `tlds_url` is set, it should point to a url that hosts tlds, each one on a new line (lines that start with either of the characters ';', '#' or '//' are ignored)
 - `tlds_file`, holds the filename that contains the list of tlds (same as for `tlds_url`; only the tld is present, excluding the '.', for ex., "com", "org")
 - If `tlds_file` is set, it takes precedence over `tlds_url`
 - `tld_dl_time_out`, this is for setting the maximum timeout for the dnslookup function when attempting to check if the domain in question resolves or not
@@ -158,8 +158,8 @@ The spider functionality is what gives Crawlector the capability to find additio
   - `tld_con_time_out`, this is for setting the maximum timeout for the connect function
 - `tld_con_use_ssl`, enable/disable the use of ssl when attempting to connect to the domain
 - If `save_to_file_subd` is set to true, discovered subdomains will be saved to "\expanded\exp_subdomain_<date>_<time>_<pm|am>.txt"
-- If save_to_file_tld is set to true, discovered domains will be saved to "\expanded\exp_tld_<date>_<time>_<pm|am>.txt"
-- If exit_here is set to true, then Crawlector bails out after executing this [site] function, irrespective of other enabled options
+- If `save_to_file_tld` is set to true, discovered domains will be saved to "\expanded\exp_tld_<date>_<time>_<pm|am>.txt"
+- If `exit_here` is set to true, then Crawlector bails out after executing this [site] function, irrespective of other enabled options
 
 # Design Considerations
 
