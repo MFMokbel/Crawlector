@@ -146,7 +146,7 @@ The spider functionality is what gives Crawlector the capability to find additio
 
 - The `site` section provides the capability to expand on a given site, by attempting to find all available top-level domains (TLDs) and/or subdomains for the same domain. If found, new tlds/subdomains will be checked like any other domain
 - This feature uses the Omnisint Labs (https://omnisint.io/) and RapidAPI APIs
-- Omnisint Labs API returns subdomains and tlds, whereas RapidAPI returns only subdomains (the Omnisint Labs API is down as of January 15, 2023, however, the implementation is still available in case the site is back up)
+- Omnisint Labs API returns subdomains and tlds, whereas RapidAPI returns only subdomains (the Omnisint Labs API is down as of March 10, 2023, however, the implementation is still available in case the site is back up)
 - For RapidAPI, you need a valid "Domains records" API key that you can request from RapidAPI, and plug into the key `rapid_api_key` in the configuration file
 - With `find_tlds` enabled, in addition to Omnisint Labs API tlds results, the framework attempts to find other active/registered domains by going through every tld entry, either, in the `tlds_file` or `tlds_url`
 - If tlds_url is set, it should point to a url that hosts tlds, each one on a new line (lines that start with either of the characters ';', '#' or '//' are ignored)
