@@ -159,7 +159,7 @@ The spider functionality is what gives Crawlector the capability to find additio
 - `tld_con_use_ssl`, enable/disable the use of ssl when attempting to connect to the domain
 - If `save_to_file_subd` is set to true, discovered subdomains will be saved to "\expanded\exp_subdomain_<date>_<time>_<pm|am>.txt"
 - If `save_to_file_tld` is set to true, discovered domains will be saved to "\expanded\exp_tld_<date>_<time>_<pm|am>.txt"
-- If `exit_here` is set to true, then Crawlector bails out after executing this [site] function, irrespective of other enabled options
+- If `exit_here` is set to true, then Crawlector bails out after executing this [site] function, irrespective of other enabled options. It means found sites won't be crawled/spidered
 
 # Design Considerations
 
