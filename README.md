@@ -131,7 +131,7 @@ The spider functionality is what gives Crawlector the capability to find additio
 - You may account for outbound/external links as well, for the main page only, via the config. option `add_ext_links`. This feature honours the `exclude_url` and `include_url` config. option.
 - You may account for outbound/external links of the main page only, excluding all other urls, via the config. option `ext_links_only`. This feature honours the `exclude_url` and `include_url` config. option.
 
-# Site Ranking Funcitonality
+# Site Ranking Functionality
 
 - This is for checking the ranking of the website
 - You give it a file with a list of websites, with their ranking, in a csv file format
