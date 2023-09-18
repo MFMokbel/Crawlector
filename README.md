@@ -10,6 +10,8 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 
 **Note-2**: The accompanying tool [EKFiddle2Yara](https://github.com/MFMokbel/EKFiddle2Yara) (*is a tool that takes EKFiddle rules and converts them into Yara rules*) mentioned in the talk, was also released at both conferences.
 
+**Note-3**: Version 2.0 (Photoid Build:180923), a milestone release, has been released on September 18, 2023.
+
 # Features
 
 - Supports spidering websites for finding additional links for scanning (up to 2 levels only)
@@ -185,6 +187,7 @@ Having each id carry its type with it, makes browsing and filtering the results 
 - If `exit_here` is set to true, then Crawlector bails out after executing this [site] function, irrespective of other enabled options. It means found sites won't be crawled/spidered
 
 # Redirection Functionality
+
 The url redirect functionality in previous releases was broken. This release provides a complete rewrite of the redirect feature, with a high degree of parametrization for controlling its operation. In release version 2.0, the redirect has a dedicated section in the configuration file, named **[redirect]**. The entirety of the redirection functionality could be turned on/off via the option **follow_redir**, under the section **[default]**.
 
 The redirect function checks the HTTP response status codes: 301, 302, 303, 307 and 308. In case of a match, Crawlector will parse the Location header, for the redirect to url, accounting for both, absolute and relative redirect urls. The redirect functionality in Crawlector was designed for performance and agility. The **[redirect]** section provides the following list of options:
@@ -242,7 +245,7 @@ If the option **check_urlhaus** under the **[page]** section is set to true, the
 # Limitations
 
 -	Single-threaded
--	Static detection (no dynamic evaluation of a given page's content)
+-	Static detection (no dynamic evaluation of a given page's content). Please check the DOE feature instead.
 - No headless browser support, yet!
 
 # Third-party libraries used
