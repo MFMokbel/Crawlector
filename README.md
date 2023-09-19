@@ -19,6 +19,9 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 - Supports online and offline scanning
 - Supports crawling for domains/sites' digital certificate
 - Supports querying URLhaus for finding malicious URLs on the page
+- Deep Object Extraction (DOE)
+- Parametrized support for HTTP redirection
+- Retreiving Whois information
 - Supports hashing the page's content with [TLSH (Trend Micro Locality Sensitive Hash)](https://github.com/trendmicro/tlsh), and other standard cryptographic hash functions such as md5, sha1, sha256, and ripemd128, among others
   - TLSH won't return a value if the page size is less than 50 bytes or not "enough amount of randomness" is present in the data
 - Supports querying the rating and category of every URL
@@ -30,6 +33,7 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 - Saves scanned website pages for later scanning (can be saved as a zip compressed)
 - The entirety of the framework’s settings is controlled via a single customizable configuration file
 - All scanning sessions are saved into a well-structured CSV file with a plethora of information about the website being scanned, in addition to information about the Yara rules that have triggered
+- Many other features...
 - All HTTP(S) communications are proxy-aware
 - One executable
 - Written in C++
