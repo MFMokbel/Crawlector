@@ -11,6 +11,7 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 **Note-2**: The accompanying tool [EKFiddle2Yara](https://github.com/MFMokbel/EKFiddle2Yara) (*is a tool that takes EKFiddle rules and converts them into Yara rules*) mentioned in the talk, was also released at both conferences.
 
 **Note-3**: Version 2.0 (Photoid Build:180923), a milestone release, has been released on September 18, 2023.
+**Note-4**: Version 2.1 (Universe-647 Build:03102), has been released on October 03, 2023. A major addition is the Slack Alert Notification feature.
 
 # Features
 
