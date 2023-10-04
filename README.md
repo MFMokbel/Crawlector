@@ -246,7 +246,7 @@ To disable or enable this feature, simply set the option **alert** to _true_ or 
 
 **Note-1**: In the initialization phase of Crawlector, it tests whether the provided authentication token is valid or not, or if the channel is set, and in case of failure, this feature is disabled automatically.
 
-All alerts reported to the Slack channel are reported under the user's name **Crawlector v**\<_version\_number_\>, for example, **Crawlector v2.0**. The user has the icon of a spider web. Additionally, all alerts are threaded, meaning all subsequent alerts after the first starting message, are posted as replies. This was a design decision and helps in case you're running multiple sessions at the same time, all reporting to the same channel. Some alerts use the markdown markup language for formatting.
+All alerts reported to the Slack channel are reported under the user's name **Crawlector v**\<_version\_number_\>, for example, **Crawlector v2.1**. The user has the icon of a spider web. Additionally, all alerts are threaded, meaning all subsequent alerts after the first starting message, are posted as replies. This was a design decision and helps in case you're running multiple sessions at the same time, all reporting to the same channel. Some alerts use the markdown markup language for formatting.
 
 When the process has finished successfully and is about to exit, it posts the following message:
 
