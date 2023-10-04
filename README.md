@@ -20,6 +20,7 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 - Supports crawling for domains/sites' digital certificate
 - Supports querying URLhaus for finding malicious URLs on the page
 - Deep Object Extraction (DOE)
+- Slack Alert Notification
 - Parametrized support for HTTP redirection
 - Retreiving Whois information
 - Supports hashing the page's content with [TLSH (Trend Micro Locality Sensitive Hash)](https://github.com/trendmicro/tlsh), and other standard cryptographic hash functions such as md5, sha1, sha256, and ripemd128, among others
@@ -84,11 +85,11 @@ It is important to note that this feature could slow scanning considering the hu
 
 # Configuration File (cl_config.ini)
 
-It is very important that you familiarize yourself with the configuration file cl_config.ini before running any session. All of the sections and parameters are documented in the configuration file itself.
+You must familiarize yourself with the configuration file cl_config.ini before running any session. All of the sections and parameters are documented in the configuration file itself.
 
 The Yara offline scanning feature is a standalone option, meaning, if enabled, Crawlector will execute this feature only irrespective of other enabled features. And, the same is true for the crawling for domains/sites digital certificate feature. Either way, it is recommended that you disable all non-used features in the configuration file.
 
-- Depending on the configuration settings (`log_to_file` or `log_to_cons`), if a Yara rule references only a module's attributes (ex., PE, ELF, Hash, etc...), then Crawlector will display only the rule's name upon a match, excluding offset and length data.
+- Depending on the configuration settings (`log_to_file` or `log_to_cons`), if a Yara rule references only a module's attributes (ex., PE, ELF, Hash, etc....), then Crawlector will display only the rule's name upon a match, excluding offset and length data.
 
 **Note**: for any option that takes a path, and if the path points to the current folder of Crawlector, it is very important that you start the path with a "\\\\", for example, "**obj_dir** = _\\\objects_dir_".
 
@@ -226,6 +227,32 @@ If the option **log_all_objs** is set to true, then, log all extracted objects m
 If the option **check_urlhaus** under the **[page]** section is set to true, then, every exrtacted object will be URLHaus scanned. Note that this option's options are inherited from the section **[urlhaus]**.
 
 **Note**: if the domain being crawled redirects to another domain, then, the last redirect to url has to be passed to DOE to work. Moreover, the domain has to start with "**_HTTP(S)://_**" for DOE to work.
+
+# Slack Alert Notification
+
+Sometimes, you might want to run Crawlector sessions that might take days to complete, for example, by crawling the top 1-million Alexa websites, and for such a scenario, you need a way to monitor the framework's operation and progress, remotely. Therefore, in release 2.1, I've added the Slack alert notification feature to provide a mechanism to monitor the execution of Crawlector in real-time, by sending Yara's alerts, _std::exit()_ events, and process warnings and errors, to a Slack channel of your choosing. In addition to that, Crawlector installs a console handler, in an attempt to monitor certain event types, including _ctrl_c_, _ctrl_close_, _ctrl_break_, _ctrl_logoff_ and _ctrl_shutdown_. It is important to keep in mind that Crawlector doesn't change/alter the default handler's behaviour, it merely reports to the Slack channel the receiving of any of the listed events. This could be extended in the future to account for other types of events.
+
+This feature uses Slack REST API, and for authentication with the server, it uses OAuth 2.0. You'll need a Slack API token to use it, and a channel configured with the right permissions. This feature only posts messages to the Slack channel and doesn't receive or process any incoming messages.
+
+The **[slack_alert]** section provides the following list of options:
+
+## [slack_alert]
+* alert      = true ; (t: bool)
+* api_token  = ; (t: string)
+* channel    = ; (t: string)
+* sleep      = ; (t: uint32_t) in milliseconds
+
+To disable or enable this feature, simply set the option **alert** to _true_ or _false_. Moreover, you need to specify the **api_token**, with a **channel** name. 
+
+**Note-1**: In the initialization phase of Crawlector, it tests whether the provided authentication token is valid or not, or if the channel is set, and in case of failure, this feature is disabled automatically.
+
+All alerts reported to the Slack channel are reported under the user's name **Crawlector v**\<_version\_number_\>, for example, **Crawlector v2.0**. The user has the icon of a spider web. Additionally, all alerts are threaded, meaning all subsequent alerts after the first starting message, are posted as replies. This was a design decision and helps in case you're running multiple sessions at the same time, all reporting to the same channel. Some alerts use the markdown markup language for formatting.
+
+When the process has finished successfully and is about to exit, it posts the following message:
+
+> **Crawlector** has finished and is shutting down successfully
+
+**Note-2**: Slack rate limit on the post message API is one message per second, with leeway for some bursts. Crawlector does not queue messages to account for more posts per second. This might change in the future if required, however, the option **sleep** allows for the process to sleep for a specified amount of time after every successfully posted message.
 
 # Miscellaneous Improvements in Version 2.0
 
