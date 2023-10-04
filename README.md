@@ -93,7 +93,7 @@ The Yara offline scanning feature is a standalone option, meaning, if enabled, C
 
 - Depending on the configuration settings (`log_to_file` or `log_to_cons`), if a Yara rule references only a module's attributes (ex., PE, ELF, Hash, etc....), then Crawlector will display only the rule's name upon a match, excluding offset and length data.
 
-**Note**: for any option that takes a path, and if the path points to the current folder of Crawlector, it is very important that you start the path with a "\\\\", for example, "**obj_dir** = _\\\objects_dir_".
+**Note**: for any option that takes a path, always provide the **absolute path**.
 
 # Sites Format Pattern
 
@@ -129,7 +129,7 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
  
 **Note 1**: Type 3 URL could be turned into type 1 URL by setting the configuration parameter live_crawler to false, in the configuration file, in the spider section.
 
-**Note 2**: Empty lines and lines that start with “;” or “//” are ignored.
+**Note 2**: Empty lines and lines that start with “;”, "#" or “//” are ignored.
 
 # The Spider Functionality
 
