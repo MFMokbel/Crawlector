@@ -120,7 +120,7 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
 
 **depth**, **total** and **sleep**, can also be replaced with their shortened versions **d**, **t** and **s**, respectively.
 
-- **depth**: the spider supports going two levels deep for finding additional URLs (this is a design decision).
+- **depth**: the spider supports going two levels deep to find additional URLs (this is a design decision).
  - A value of 0 indicates a depth of level 1, with the value that comes after the “->” ignored. 
  - A depth of level-1 is controlled by the total parameter. So, first, the spider tries to find that many additional URLs off of the specified URL.
  - The value after the “->” represents the maximum number of URLs to spider for each of the URLs found (as per the **total** parameter value).
@@ -133,11 +133,11 @@ where, `<id> := [a-zA-Z0-9_-]{1,128}`
 
 # The Spider Functionality
 
-The spider functionality is what gives Crawlector the capability to find additional links on the targeted page. The Spider supports the following featuers:
+The spider functionality is what gives Crawlector the capability to find additional links on the targeted page. The Spider supports the following features:
 
 - The domain has to be of `Type 3`, for the Spider functionality to work
 - You may specify a list of wildcarded patterns (pipe delimited) to prevent spidering matching urls via the `exclude_url` config. option. For example, `*.zip|*.exe|*.rar|*.zip|*.7z|*.pdf|.*bat|*.db`
-- You may specify a list of wildcarded patterns (pipe delimited) to spider only urls that match the pattern via the `include_url` config. option. For example, `*/checkout/*|*/products/*`
+- You may specify a list of wildcarded patterns (pipe delimited) to spider-only urls that match the pattern via the `include_url` config. option. For example, `*/checkout/*|*/products/*`
 - You may exclude HTTPS urls via the config. option `exclude_https`
 - You may account for outbound/external links as well, for the main page only, via the config. option `add_ext_links`. This feature honours the `exclude_url` and `include_url` config. option.
 - You may account for outbound/external links of the main page only, excluding all other urls, via the config. option `ext_links_only`. This feature honours the `exclude_url` and `include_url` config. option.
@@ -146,18 +146,18 @@ The spider functionality is what gives Crawlector the capability to find additio
 
 In release 2.0, the ids have their types explicitly assigned by appending either of the following types to the id itself:
 
-| id_postfix (type)    | description                                                 |
-| ------------- |:-----------------------------------------------------------:|
-| _t1_p         | type 1 plain with no id                                     |
-| _sd           | sub-type for subdomains     |
-| _tld          | sub-type for tlds     |
-| _t2_p         | type 2 plain with an id     |
-| _t3_s         | type 3 spidered domains     |
-| _t3_sc        | type 3 spidered domains with a child node     |cache_dir
-| _t3_ss        | type 3 when a type 3 (_t3_s) url is turned into type 1 url     |
-| _t3_s_e       | type 3 spidered domains external links     |
-| \_obj_        | for deep scanning and object extraction     |
-| _t4_ru        | for redirect url (for all types)     |
+| **id_postfix (type)** | **description**                                            |
+| --------------------- | ---------------------------------------------------------- |
+| \_t1\_p               | type 1 plain with no id                                    |
+| _sd                   | sub-type for subdomains                                    |
+| _tld                  | sub-type for tlds                                          |
+| \_t2\_p               | type 2 plain with an id                                    |
+| \_t3\_s               | type 3 spidered domains                                    |
+| \_t3\_sc              | type 3 spidered domains with a child node                  |
+| \_t3\_ss              | type 3 when a type 3 (_t3_s) url is turned into type 1 url |
+| \_t3\_s\_e            | type 3 spidered domains external links                     |
+| \_obj\_               | for deep scanning and object extraction                    |
+| \_t4\_ru              | for redirect url (for all types)                           |
 
 Having each id carry its type with it, makes browsing and filtering the results easier. Moreover, this is used internally for various reasons.
 
