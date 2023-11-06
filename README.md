@@ -220,7 +220,7 @@ Assume that the original url given to Crawlector to crawl is "https://www.mfa.go
 
 One of the major additions to release 2.0 is the capability to extract different types of objects from the page, save them to disk, Yara & URLHaus scan them and save the results to the CSV file. To enable this feature, set the option **extract_obj** to true, under the section **[page]**.
 
-The implementation of the deep object extraction feature works by creating an MHT web archive file from the webpage, including external scripts, images and CSS files. All embedded files will be extracted into the path specified by the option **obj_dir** (path: **obj\_dir**/**objects**/), where each file will be scanned. The implementation is not to be confused with headless browser functionality. DOE is different and doesn't involve loading the page to retrieve all dynamically queried urls. Therefore, it has its own limitations. 
+The implementation of the deep object extraction feature works by creating an MHT web archive file from the webpage, including external scripts, images and CSS files. All embedded files will be extracted into the path specified by the option **obj_dir** (path: **obj\_dir**/**objects**/), where each file will be scanned. The implementation is not to be confused with headless browser functionality. DOE is different and doesn't involve loading the page to retrieve all dynamically queried URLs. Therefore, it has its limitations. 
 
 All of the extracted objects will have some of their metadata written into the CSV file. Things to keep in mind when reading the CSV file, the id of the domain with the extracted object has a unique format, as follows, **\<domain\_id>\_\<type>\_p\_obj\_\<counter>** (for example, \_mfa\_gov\_cef40bc5-ba6a-41\_t1\_p\_obj\_0\_). And, the url will have the following format, **\<url>__\<object\_filename>** (for example, _https://www.mfa.gov.law\_\_bilmur.min.js_).
 
@@ -228,7 +228,7 @@ If the option **delete_obj** is set to true, then, all exrtacted objects that ar
 If the option **log_all_objs** is set to true, then, log all extracted objects metadata to the same cl_mlog CSV file.
 If the option **check_urlhaus** under the **[page]** section is set to true, then, every exrtacted object will be URLHaus scanned. Note that this option's options are inherited from the section **[urlhaus]**.
 
-**Note**: if the domain being crawled redirects to another domain, then, the last redirect to url has to be passed to DOE to work. Moreover, the domain has to start with "**_HTTP(S)://_**" for DOE to work.
+**Note**: if the domain being crawled redirects to another domain, then, the last redirect to URL has to be passed to DOE to work. Moreover, the domain has to start with "**_HTTP(S)://_**" for DOE to work.
 
 # Slack Alert Notification
 
@@ -256,12 +256,52 @@ When the process has finished successfully and is about to exit, it posts the fo
 
 **Note-2**: Slack rate limit on the post message API is one message per second, with leeway for some bursts. Crawlector does not queue messages to account for more posts per second. This might change in the future if required, however, the option **sleep** allows for the process to sleep for a specified amount of time after every successfully posted message.
 
+# Slack Remote Control
+
+With release 2.2 (code-named *Hallstatt*), I'm introducing the capability to remotely control Crawlector via a selected set of specially designed control commands. The reason for introducing this functionality is to monitor and control certain behaviours of sessions that are supposed to run for hours or days. For example, you might want to turn on/off the Slack alert functionality, terminate Crawlector, and upload a configuration file, among others.
+
+This feature uses Slack REST API, and for authentication with the server, it uses OAuth 2.0. You'll need a Slack API token to use it, and a channel configured with the right permissions. The API token is the same as that used in the **[slack_alert]** section, option **api_token**.
+
+The **[slack_alert]** section provides the following additional list of options for the remote control functionality:
+
+## [slack_alert] (control options)
+* control      = true ; (t: bool)
+* ctrl_channel = ; (t: string) it has to be the channel ID and not the channel name
+* ctrl_sleep   = ; (t: uint32_t) in milliseconds
+
+To disable or enable this feature, simply set the option **control** to _true_ or _false_. The **ctrl_channel** name has to be the channel ID name and not the channel name. You can get it by right-clicking on the channel name -> View channel details -> Scroll down to the bottom of the window, and you'll see the Channel ID: \<channel_id\> field.
+
+The option **ctrl_sleep** determines the frequency of calling out to the control channel specified in the **ctrl_channel** option for retrieving control commands. You could also update this option via the control command **cl_update_delay \<time_in_ms\>**.
+
+The list of supported control commands is the following:
+
+
+| Control Command                                              | Description                                                                         |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| **cl_get_date**                                              | Retrieves the date and time Crawlector was started and the current date and time.   |
+| **cl_ping**                                                  | Sends back the message "**Pong...**". This is to check that C&C channel is working. |
+| **cl_get_config**                                            | Uploads the currently used configuration (e.g., cl_config.ini) file as a text file. |
+| **cl_update_delay** <integer_in_milliseconds>                | Updates the check-in time between every pull request for control commands.<p>- Changes the value (ctrl_sleep) for the current session only.         |
+| **cl_turn_off_slack_alert**                                  | Turns _off_ Slack alert feature for the currently active session.                   |
+| **cl_turn_on_slack_alert**                                   | Turns _on_ Slack alert feature for the currently active session                     |
+| **cl_help**                                                  | Lists this help message.                                                            |
+| **cl_exit**                                                  | Terminates Crawlector, forcefully.                                                  |
+
+
+**Note-1**: In the initialization phase of Crawlector, it tests whether the provided authentication token is valid or not, or if the channel is set, and in case of failure, this feature is disabled automatically.
+
+If this functionality is enabled, and once it passes API token validation, Crawlector sends the message "Crawlector is ready for receiving control commands. Type the command **cl_help** for a list of supported control commands." to the designated **ctrl_channel**.
+
+All responses to a given control command are threaded. Moreover, control commands are read on a session-by-session basis, from the time a session is started.
+
+**Note-2**: Slack rate limit on the retrieval (conversation history) message API is one request per second, with leeway for some bursts. So, if the **ctrl_sleep** option is set to a value less than a second or greater tha a second, Crawlector **does queue** messages to account for more **control commands** per second, and execute them in the order received.
+
 # Miscellaneous Improvements in Version 2.0
 
 * Added the command line options **"-v"** and **"-c"**. The option **"-v"** is for printing version info to the console. The option **"-c"** is for reading a different configuration file, other than the default **"cl_config.ini"**.
 * Various code optimizations and minor improvements
 * For every read domain (not with a subdomain), Crawlector will prepend "www." to every read site entry, if it doesn't exist already. For example, in the case of RapidAPI subdomain enumeration query, the domain being queried has to start with "www.".
-* Added the options **clear_dns** and **upg_2_https** to the **[default]** section. The former clears the hostname to IP DNS cache, and the latter, upgrades every site to HTTPS by prepending "https://" to it. Similarly, the option **tld_upgrd_2_https** has been added to the section **[site]**, for upgrading active domains with different tlds to https.
+* Added the options **clear_dns** and **upg_2_https** to the **[default]** section. The former clears the hostname to the IP DNS cache and the latter upgrades every site to HTTPS by prepending "https://" to it. Similarly, the option **tld_upgrd_2_https** has been added to the section **[site]**, for upgrading active domains with different TLDs to https.
 * Added the options **rapid_api_weeks** and **rapid_api_limit** to the **[site]** section for configuring the API request to RapidAPI. Both options are optional. The former specifies the number of weeks to query from the db, while the latter, specifies the number of subdomains to return per site.
 * In release 2.0, you can specify a different cache directory for the **[spider]** and **[default]** sections, via the option **cache_dir**.
 * Many options were added to the **page** section in release 2.0, including:
@@ -272,7 +312,7 @@ When the process has finished successfully and is about to exit, it posts the fo
 
 # Design Considerations
 
-- A URL page is retrieved by sending a GET request to the server, reading the server response body, and passing it to Yara engine for detection.
+- A URL page is retrieved by sending a GET request to the server, reading the server response body, and passing it to the Yara engine for detection.
 - Some of the GET request attributes are defined in the [default] section in the configuration file, including, the User-Agent and Referer headers, and connection timeout, among other options.
 - Although Crawlector logs a session's data to a CSV file, converting it to an SQL file is recommended for better performance, manipulation and retrieval of the data. This becomes evident when you’re crawling thousands of domains.
 - Repeated domains/urls in the `cl_sites` are allowed.
