@@ -12,7 +12,9 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 
 **Note-3**: Version 2.0 (Photoid Build:180923), a milestone release, has been released on September 18, 2023.
 
-**Note-4**: Version 2.1 (Universe-647 Build:03102), has been released on October 03, 2023. A major addition is the Slack Alert Notification feature.
+**Note-4**: Version 2.1 (Universe-647 Build:031023), has been released on October 03, 2023. A major addition is the Slack Alert Notification feature.
+
+**Note-5**: Version 2.2 (Hallstatt Build:051123), has been released on November 05, 2023. A major addition is the Slack Remote Control feature.
 
 # Features
 
