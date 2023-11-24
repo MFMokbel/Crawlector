@@ -16,6 +16,8 @@ Crawlector (the name Crawlector is a combination of **Crawl***er* & *Det***ector
 
 **Note-5**: Version 2.2 (Hallstatt Build:051123), has been released on November 05, 2023. A major addition is the Slack Remote Control feature.
 
+**Note-6**: Version 2.3 (Munich Build:241123), has been released on November 24, 2023. A major addition is the DNS Nameservers feature.
+
 # Features
 
 - Supports spidering websites for finding additional links for scanning (up to 2 levels only)
@@ -296,7 +298,37 @@ If this functionality is enabled, and once it passes API token validation, Crawl
 
 All responses to a given control command are threaded. Moreover, control commands are read on a session-by-session basis, from the time a session is started.
 
-**Note-2**: Slack rate limit on the retrieval (conversation history) message API is one request per second, with leeway for some bursts. So, if the **ctrl_sleep** option is set to a value less than a second or greater tha a second, Crawlector **does queue** messages to account for more **control commands** per second, and execute them in the order received.
+**Note-2**: Slack rate limit on the retrieval (conversation history) message API is one request per second, with leeway for some bursts. So, if the **ctrl_sleep** option is set to a value less than a second or greater than a second, Crawlector **does queue** messages to account for more **control commands** per second, and execute them in the order received.
+
+# DNS Nameservers
+
+With release 2.3 (code-named *Munich*), the capability to specify a list of DNS nameservers for all DNS queries and DNS-to-IP resolutions attempted by Crawlector is introduced with a high level of control. This is important in case you're crawling blocked or malicious websites. This feature applies to every function in Crawlector where a DNS query or DNS-to-IP request is made. More importantly, it provides the capability to perform DNS over TLS for every nameserver that supports it.
+
+The **[dns_ns]** section provides the following list of options for administering this functionality:
+
+## [dns_ns]
+* enable        = false ; (t: bool)
+* name_servers  = 8.8.8.8(e_tls),12.13.14.15(d_tls) ; (t: string)
+* dns_tls       = yes ; (t: string) (yes, no or force)
+* keep_default  = false ; (t: bool)
+* conn_time_out = 3000 ; (t: uint32_t) in milliseconds (0 to wait indefinitely)
+
+The option **name_servers** takes a parametrized list of DNS name servers to use, comma-separated. The value of this option has the format: ```<IPv4_address>(<tls_option>) where <tls_option> takes either of the values "d_tls" or "e_tls"```. The options "_d_tls_" or "_e_tls_" indicate whether the nameserver in question supports DNS over TLS or not, respectively. This option will be enforced depending on the value set for the option **dns_tls**. For example, the entry ```8.8.8.8(e_tls)``` indicates to use the Google DNS server ```8.8.8.8``` with TLS support, whereas the entry ```12.13.14.15(d_tls)``` indicates to use the DNS server ```12.13.14.15``` with no TLS support.
+
+The option **dns_tls** specifies the required level of TLS enforcement. This option takes either of the values, "_yes_" "_no_" or "_force_".
+
+- _yes_
+    - DNS nameservers with TLS support will be attempted first, and if no NS with TLS support is found, then UDP/TCP resolution will be attempted instead.
+- _no_
+    - no TLS support (do not use DNS nameservers with TLS support)
+- _force_
+    - only DNS nameservers with TLS support will be used, and any DNS query initiated by Crawlector will use DoT (DNS over TLS).
+
+The option **keep_default** is for whether to add the default nameserver(s) to the list of nameservers. A default nameserver is assumed not to support TLS.
+
+The option **conn_time_out** specifies the time in milliseconds to wait for an answer to a DNS query.
+
+The option **enable** turns this functionality on or off.
 
 # Miscellaneous Improvements in Version 2.0
 
